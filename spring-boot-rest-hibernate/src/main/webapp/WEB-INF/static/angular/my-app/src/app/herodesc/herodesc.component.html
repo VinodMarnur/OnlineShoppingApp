@@ -1,0 +1,18 @@
+<div *ngIf="Id==1" class="col-sm-4">
+<p>Actor Name : Punith</p>
+<p>Age : 40</p>
+<p>Upcoming movie name : Ramayana </p>
+</div>
+<div *ngIf="Id==2" class="col-sm-4">
+<p>Actor Name : Darshan</p>
+<p>Age : 41</p>
+<p>Upcoming movie name : Ramayana</p>
+</div>
+<div class="col-sm-4">
+<ul>
+  <li>{{this.heroService.hero.name}}</li>
+   <li>{{this.heroService.hero.age}}</li>
+</ul>
+</div>
+
+<button class="btn btn-info"><a href="/heros" style="">Back to HeroList</a></button>

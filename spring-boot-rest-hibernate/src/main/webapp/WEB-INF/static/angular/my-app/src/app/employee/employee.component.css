@@ -1,0 +1,17 @@
+.margin-a{
+    margin:8px;
+}
+
+.margin-b{
+  margin-top:8px;
+  margin-right:50px;
+}
+
+
+table {
+    width: 100%;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }

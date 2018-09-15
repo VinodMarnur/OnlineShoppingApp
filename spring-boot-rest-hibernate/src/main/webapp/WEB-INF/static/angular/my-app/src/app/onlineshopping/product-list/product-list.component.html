@@ -1,0 +1,31 @@
+
+<div style="margin-right: 89px;">
+  <span class="example-input-label"> Search: </span>
+  <mat-form-field >
+    <input matInput type="text" (change)="searchProduct($event.target.value)" />
+  </mat-form-field>
+</div>
+<mat-card flex="33" *ngFor="let product of productList">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title style="margin-left:10px;">{{product.productName}}</mat-card-title>
+        </mat-card-header>
+        <img class="mat-image" mat-card-image src="{{filepath+product.productImageUrl}}" alt="Photo of a Shiba Inu" *ngIf="product.productImageUrl">
+        <img class="mat-image" mat-card-image src="{{filepath}}noImageFound.png" alt="Photo of a Shiba Inu" *ngIf="!product.productImageUrl">
+        <mat-card-content>
+          <h5 style="margin-left:45px">Price:{{product.price}}</h5>
+        </mat-card-content>
+        <mat-card-actions>
+          <button (click)="viewProductMore(product.productId)" class="btn btn-success" style="margin-left:20px">viewMore</button>
+          <button (click)="increaseCartCount(product.productId,product.productName)" class="btn btn-success" style="margin-left:20px">AddToCart</button>
+        </mat-card-actions>
+</mat-card>
+    <!-- <router-outlet></router-outlet> -->
+
+
+
+
+
+
+
+

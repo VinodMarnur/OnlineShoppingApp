@@ -1,0 +1,91 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/* @import '~@angular/material/core/theming/prebuilt/deeppurple-amber'; */
+/* @import '~angular-material-datepicker/src/datepicker/calendar.component.scss';  */
+
+/* @include calendar-theme($theme); */
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+ 
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+}
+ 
+.fade.in {
+    opacity: 1;
+}
+ 
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+}
+ 
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    transform: translate(0,0);
+}
+ 
+.modal.fade .modal-dialog {
+    -webkit-transition: -webkit-transform .3s ease-out;
+    -o-transition: -o-transform .3s ease-out;
+    transition: transform .3s ease-out;
+    -webkit-transform: translate(0,-25%);
+    -ms-transform: translate(0,-25%);
+    -o-transform: translate(0,-25%);
+    transform: translate(0,-25%);
+}
+ 
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 600px;
+        margin: 60px auto;
+    }
+}
+
+
+.alertify-logs.right {
+    right: 0;
+    width: 20%;
+    }
+    .alertify-logs.right > .default,
+    .alertify-logs.right > .success,
+    .alertify-logs.right > .error {
+    transform: translateX(-5%);
+    transform: translateY(20%);
+    text-align: left;
+    }
+
+
+    body { 
+        font-family: Roboto, Arial, sans-serif;
+        margin: 0;
+      }
+      
+      .basic-container {
+        padding: 5px;
+      }
+      
+      .version-info {
+        font-size: 8pt;
+        float: right;
+      }
+      

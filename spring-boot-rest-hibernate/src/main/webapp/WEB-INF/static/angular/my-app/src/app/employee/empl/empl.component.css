@@ -1,0 +1,10 @@
+.margin-button{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+.has-success {
+    border-color: #5cb85c;
+}
+.has-danger{
+    border-color: #f80404;
+}

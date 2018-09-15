@@ -1,0 +1,41 @@
+<div class="shopping-cart" *ngIf="cartlist.length>0">
+  <!-- Title -->
+  <div class="title">
+    Shopping Bag
+  </div>
+ 
+  <!-- Product #1 -->
+  <div class="item" *ngFor="let cart of cartlist">
+    <div class="buttons">
+       <img  mat-card-image src="{{filepath+cart.product.productImageUrl}}" alt="Photo of a Shiba Inu" *ngIf="cart.product.productImageUrl" style="max-height:50px;max-width:100px;margin-top: -20px;">
+       <img  mat-card-image src="{{filepath}}noImageFound.png" alt="Photo of a Shiba Inu" *ngIf="!cart.product.productImageUrl" style="max-height:50px;max-width:100px;margin-top: -20px;">  
+    </div>
+    <div class="description">
+      <span>{{cart.product.productName}}</span>
+    </div>
+    <div class="quantity">
+        <button class="fa fa-plus"  (click)="incrementDecrementProductCount(cart.product.productId,'increment',cart.cartProductCount)"></button>
+        <button class="fa fa-minus" (click)="incrementDecrementProductCount(cart.product.productId,'decrement',cart.cartProductCount)"></button>
+     </div>
+    <div class="total-price"><b>&#8377;:</b>{{cart.product.price}}</div>
+    <div class="total-price">
+        {{cart.cartProductCount}}*{{cart.product.price}}
+    </div>    
+    <div class="total-price" style="margin-right:50px">
+        {{cart.cartProductCount*cart.product.price}}
+    </div>
+
+    <div class="total-price" style="margin-right:50px">
+              <span class="btn glyphicon glyphicon-trash" (click)="removeFromCart(cart.cartId,cart.product.productName)"></span>
+    </div>
+  </div>
+  <div class="pull-right" style="margin-left: 467px;margin-bottom: 15px;margin-top: -26px;">
+        <b> Total Price : {{getCartPrice(cartlist)}}</b> 
+  </div>
+</div>
+<div style="margin-left: 878px;margin-top: -56px;" *ngIf="cartlist.length>0">
+      <a [routerLink]="['../check-out']" class="btn btn-lg-success" style="background: #28a745c2;width: 116px;">Proceed To Pay</a>
+</div>
+<div clas="container-fluid" *ngIf="cartlist.length==0">
+  <img src="../assets/img/empty-cart.jpg" alt="cart-empty-image"/>
+</div>

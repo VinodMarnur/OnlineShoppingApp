@@ -1,0 +1,107 @@
+<div class="pull-right" style="margin-right:10px;margin-top:10px" >
+    <button class="btn btn-success" (click)="addAddress(0)">Add Address</button>
+</div>
+<div class="row" style="margin-top:50px">
+     <div class="col-sm-6">
+        <p style="margin-left: 16px;margin-bottom: 0px;color: blue;">Checkout</p>
+          <div class="col-sm-12 col-md-12">
+                <select class="form-control" #shippingcontactAddressId style="height: 32px;" (change)="getShippingAddress(shippingcontactAddressId.value)">
+                    <option>select Address</option>
+                    <option *ngFor="let address of shippingaddresslist" value="{{address.contactAddressId}}">{{address.firstName+" "+address.lastName }}
+                        <br /> Address :{{address.addressLine}}
+                        <br /> Zip Code :{{address.zipCode}}
+                    </option>
+                </select>
+         </div> 
+         <div class="col-sm-6">
+            <input type="text" name="state" class="form-control" placeholder="State"/>
+        </div>
+        <div class="col-sm-6">
+            <input type="text" name="city" class="form-control" placeholder="City" *ngIf="shippingAddress.city" [ngModel]="shippingAddress.city.cityName" />
+        </div>
+        <div class="col-sm-12">
+            <input type="text" name="Address Line" class="form-control" [ngModel]="shippingAddress.addressLine" placeholder="addressline" />
+        </div>
+        <div class="col-sm-6">
+            <input type="text" name="country" class="form-control" placeholder="Country" />
+        </div>
+        <div class="col-sm-6">
+            <input type="text" name="zipCode" class="form-control"  [ngModel]="shippingAddress.zipCode"
+             placeholder="Zip Code" />
+        </div>
+    </div>
+    <div class="col-sm-6"  class="border" style="min-width: 37%;margin-left: 86px;margin-top: 17px;min-height: 218px;" *ngIf="cartlist.length>0">
+          <p style="margin-left: 10px;margin-top: 10px">Order Items:</p>
+          <div class="col-sm-12">
+          <div *ngFor="let cart of cartlist">
+              <div class="col-sm-12" style="width:100%">
+                <div class="col-sm-2">
+                  <img  mat-card-image src="{{filepath+cart.product.productImageUrl}}" alt="Photo of a Shiba Inu" *ngIf="cart.product.productImageUrl" style="max-height:40px;max-width:35px;" />
+                  <img  mat-card-image src="{{filepath}}noImageFound.png" alt="No Image Found" *ngIf="!cart.product.productImageUrl" style="max-height:40px;max-width:35px;">  
+                </div>
+                <div class="col-sm-5">
+                    <span>{{cart.product.productName}}</span>               
+                </div>
+                <div class="col-sm-2">
+                    <span>{{cart.cartProductCount}}*{{cart.product.price}}</span>
+                </div>
+                <div class="col-sm-3">
+                    <span >{{cart.cartProductCount*cart.product.price}}</span>
+               </div>
+             </div>
+      </div>
+    </div>
+    <div class="row"></div>
+      <div class="col-sm-12" style="margin:0px">
+        <div class="col-sm-12">
+                <span style="margin-left:20px">Total Purchases :</span><p class="pull-right" style="margin-right:65px">{{getCartPrice(cartlist)}}</p>
+        </div>  
+        <div class="col-sm-12" style="margin:0px">
+              <span style="margin-left:20px">Estimated Tax&nbsp;&nbsp;&nbsp;&nbsp;:</span><p class="pull-right" style="margin-right:65px">0</p>
+        </div>
+      </div>
+      <div class="row"></div>
+      <div class="col-sm-12" style="margin:0px">
+        <span style="margin-left:35px">Total:</span><p class="pull-right" style="margin-right:80px">{{getCartPrice(cartlist)}}</p>
+      </div>
+  </div>
+</div>
+<div class="row"></div>
+<div class="row" style="margin-top:20px">
+    <div class="col-sm-6">
+       <p style="margin-left: 16px;margin-bottom: 0px;color: blue;">Billing</p>
+         <div class="col-sm-12 col-md-12">
+            <select class="form-control" #billingcontactAddressId style="height: 32px;" (change)="getBillingAddress(billingcontactAddressId.value)">
+                <option>select Address</option>
+                <option *ngFor="let address of billingaddresslist" value="{{address.contactAddressId}}">{{address.firstName+" "+address.lastName }}
+                    <br /> Address :{{address.addressLine}}
+                    <br /> Zip Code :{{address.zipCode}}
+                </option>
+            </select>
+        </div>
+        <div class="col-sm-6">
+           <input type="text" name="firstName" class="form-control"  [ngModel]="billingAddress.firstName"   placeholder="First Name"/>
+       </div>
+       <div class="col-sm-6">
+           <input type="text" name="lastName" class="form-control" placeholder="Last Name" [ngModel]="billingAddress.lastName" />
+       </div>
+       <div class="col-sm-12">
+           <input type="text" name="email" class="form-control" placeholder="email" [ngModel]="billingAddress.email" />
+       </div>
+       <div class="col-sm-6">
+           <input type="text" name="state" class="form-control" placeholder="State"/>
+       </div>
+       <div class="col-sm-6">
+           <input type="text" name="city" class="form-control" placeholder="City" [ngModel]="billingAddress.city.cityName" />
+       </div>
+       <div class="col-sm-12">
+            <input type="text" name="addressLine" class="form-control" placeholder="Address Line"  [ngModel]="billingAddress.addressLine"/>
+       </div>
+       <div class="col-sm-6">
+          <input type="text" name="country" class="form-control" placeholder="Country"/>
+      </div>
+      <div class="col-sm-6">
+          <input type="text" name="zipCode" class="form-control" placeholder="Zip Code"  [ngModel]="billingAddress.zipCode"/>
+      </div>
+   </div>
+</div>

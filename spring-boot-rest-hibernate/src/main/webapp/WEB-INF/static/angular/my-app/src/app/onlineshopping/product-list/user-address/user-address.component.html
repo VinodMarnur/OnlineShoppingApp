@@ -1,0 +1,77 @@
+<div class="card">
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Add Address</strong>
+    </h5>
+    <div class="card-body px-lg-5 pt-0">
+       <form #userAddress = "ngForm" (ngSubmit) = "onClickSubmit(userAddress.value)" style="color: #757575;" >
+              <div class="md-form mt-0">
+               <input type="hidden" name="contactAddressId"  [(ngModel)]="userId"
+                class="form-control" >
+                 <input type="hidden" name="userId"  [(ngModel)]="userId"
+                class="form-control" >
+                <label>First Name</label>
+                <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="user.firstName"
+                 class="form-control" required #firstName="ngModel" [ngClass]="{'has-danger': firstName.invalid  && (firstName.dirty || firstName.touched), 
+                 'has-success': firstName.valid && (firstName.dirty || firstName.touched)}" />
+            </div>
+            <div class="md-form mt-0">
+                <label>Last Name</label>
+                <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="user.lastName"
+                 class="form-control" required #userName="ngModel" [ngClass]="{'has-danger': userName.invalid  
+                 && (userName.dirty || userName.touched),'has-success': userName.valid && (userName.dirty || userName.touched)}" />
+            </div>
+            <div class="md-form mt-0">
+                <label>Email</label>
+                <input type="text" name="email" placeholder="Email" [(ngModel)]="user.email"
+                 class="form-control" required #email="ngModel" [ngClass]="{'has-danger': email.invalid  
+                 && (email.dirty || email.touched),'has-success': email.valid && (email.dirty || email.touched)}" />
+            </div>
+            <div class="md-form col-sm-6">
+                <label  style="margin-left:-15px;">Country</label>
+                <select name="countryId" [(ngModel)]="user.countryId" class="form-control"
+                         style="margin-left:-15px;height: 34px;" 
+                         (change) = "loadState(userAddress.value.countryId)" 
+                          required>
+                     <option value="0">select Country</option>
+                     <option *ngFor="let country of countrylist" [value]="country.countryId" [selected]="country.countryId==countryId">{{country.countryName}}</option>
+                </select> 
+            </div>
+            <div class="md-form col-sm-6">
+                <label  style="margin-left:15px;">State</label>
+                <select name="stateId" [(ngModel)]="stateId" class="form-control"
+                         style="margin-left:15px;height: 34px;" 
+                         (change) = "loadCity(userAddress.value.stateId)" 
+                          required>
+                     <option value="0">select State</option>
+                     <option *ngFor="let state of statelist" [value]="state.stateId" [selected]="state.stateId==stateId">{{state.stateName}}</option>
+                </select> 
+            </div>
+            <div class="md-form mt-0">
+                <label>Address Line</label>
+                <input type="text" name="addressLine" placeholder="Address Line" [(ngModel)]="user.addressLine"
+                 class="form-control" required #addressLine="ngModel" [ngClass]="{'has-danger': addressLine.invalid  
+                 && (addressLine.dirty || addressLine.touched),'has-success': addressLine.valid && (addressLine.dirty || addressLine.touched)}" />
+            </div>
+            <div class="md-form col-sm-6">
+                <label  style="margin-left:-15px;">City</label>
+                <select name="cityId" [(ngModel)]="user.cityId" class="form-control"
+                         style="margin-left:-15px;height: 34px;" required>
+                     <option value="0">select City</option>
+                     <option *ngFor="let city of citylist" [value]="city.cityId" [selected]="city.cityId==cityId">{{city.cityName}}</option>
+                </select> 
+            </div>
+            <div class="md-form col-sm-6">
+                <label  style="margin-left:15px;">Zip Code</label>
+                <input type="text" name="zipCode" placeholder="Zip Code" [(ngModel)]="user.zipCode"
+                 class="form-control" required #zipCode="ngModel"
+                  [ngClass]="{'has-danger': zipCode.invalid && 
+                  (zipCode.dirty || zipCode.touched),'has-success': zipCode.valid && 
+                  (zipCode.dirty || zipCode.touched)}"  style="margin-left:15px;" />
+            </div>
+            <div class="md-form col-sm-offset-5 col-md-3" style="margin-top:10px;">  
+                  <button class="btn btn-success" *ngIf="user.userId>0">Update</button>
+                  <button class="btn btn-success" *ngIf="!user.userId">Add</button>
+            </div>
+        </form>
+      </div>
+</div>
