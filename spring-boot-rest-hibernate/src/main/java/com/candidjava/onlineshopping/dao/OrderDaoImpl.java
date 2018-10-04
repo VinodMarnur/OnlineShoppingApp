@@ -6,8 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +90,18 @@ public class OrderDaoImpl implements OrderDao{
 		return map;
 	}
 
-
+	@Override
+	public List<OrderedProducts> orderList(String str) throws JSONException {
+		obj=new JSONObject(str);
+		System.out.println("input"+obj.toString());
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria=session.createCriteria(OrderedProducts.class);
+		
+		Criteria ordersCriteria = criteria.createCriteria("orders",JoinType.INNER_JOIN);
+		Criteria userCriteria = ordersCriteria.createCriteria("user",JoinType.INNER_JOIN);
+		userCriteria.add(Restrictions.eq("userId", obj.getLong("userId")));
+		criteria.uniqueResult();
+		return criteria.list();
+	}
 
 }

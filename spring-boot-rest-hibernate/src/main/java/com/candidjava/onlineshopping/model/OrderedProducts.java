@@ -53,12 +53,4 @@ public class OrderedProducts implements Serializable{
 		this.productId = productId;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
 }
