@@ -21,7 +21,7 @@ import com.candidjava.onlineshopping.model.ContactAddress;
 public class OnlineShoppingContactAddressController {
 	
 	@Autowired
-	OnlineShoppingContactAddressDao onlineShoppingContactAddressDao ;
+	OnlineShoppingContactAddressDao onlineShoppingContactAddressDao;
 	
 	
 	@RequestMapping("/save-contact-address")

@@ -19,4 +19,6 @@ public interface ProductDao {
 		Map incrementDecrementProductCount(String str) throws JSONException;
 		Map addToCart(String str) throws JSONException;
 		Map deletePrdouctFromCart(String str) throws JSONException;
+		
+		List<Cart> getCartProducts(int userId);
 }

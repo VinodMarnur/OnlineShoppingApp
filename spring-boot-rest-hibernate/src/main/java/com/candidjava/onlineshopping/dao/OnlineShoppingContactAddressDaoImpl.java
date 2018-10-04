@@ -37,6 +37,10 @@ public class OnlineShoppingContactAddressDaoImpl implements OnlineShoppingContac
 		System.out.println("obj=========input========"+obj.toString());
 		ContactAddress contactAddress=new ContactAddress();
 		Session session=sessionFactory.getCurrentSession();
+		if(!obj.isNull("contactAddressId")) {
+			contactAddress.setContactAddressId(obj.getLong("contactAddressId"));
+		}
+		
 		if(!obj.isNull("firstName")) {
 			contactAddress.setFirstName(obj.getString("firstName"));
 		}
@@ -65,16 +69,21 @@ public class OnlineShoppingContactAddressDaoImpl implements OnlineShoppingContac
 			contactAddress.setZipCode(obj.getString("zipCode"));
 		}
 		
+		 System.out.println("first check contact Address Id"+contactAddress.getContactAddressId());
+		
 		 msg=validate(msg,contactAddress);
 		 if(msg.equals(""))
 		 {
+			 
+			 System.out.println("contact Address Id"+contactAddress.getContactAddressId());
+			 
 			 if(contactAddress.getContactAddressId()>0) {
 				 session.update(contactAddress);
 				 map.put("msg","Contact Address Updated" );
 				 map.put("status", 200);
 			 }else {
 				 session.save(contactAddress);
-				 map.put("msg","Contact Address Saved" );
+				 map.put("msg","Contact Address Adeded" );
 				 map.put("status", 200);
 		     }
 		 }else {

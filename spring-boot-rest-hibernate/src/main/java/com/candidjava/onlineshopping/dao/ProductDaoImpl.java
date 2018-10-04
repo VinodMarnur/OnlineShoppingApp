@@ -327,4 +327,14 @@ public class ProductDaoImpl implements ProductDao {
 		return map;
 	}
 
+	@Override
+	public List<Cart> getCartProducts(int userId) {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria=session.createCriteria(Cart.class);
+		Criteria userCriteria = criteria.createCriteria("user",JoinType.INNER_JOIN);
+		userCriteria.add(Restrictions.eq("userId", userId));
+        List<Cart> cartList=criteria.list();
+		return cartList;
+	}
+
 }
