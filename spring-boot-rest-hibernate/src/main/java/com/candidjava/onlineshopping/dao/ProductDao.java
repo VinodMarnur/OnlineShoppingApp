@@ -20,5 +20,5 @@ public interface ProductDao {
 		Map addToCart(String str) throws JSONException;
 		Map deletePrdouctFromCart(String str) throws JSONException;
 		
-		List<Cart> getCartProducts(int userId);
+		List<Cart> getCartProducts(long userId);
 }

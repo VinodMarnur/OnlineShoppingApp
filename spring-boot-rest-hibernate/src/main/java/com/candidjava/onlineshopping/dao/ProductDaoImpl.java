@@ -328,7 +328,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<Cart> getCartProducts(int userId) {
+	public List<Cart> getCartProducts(long userId) {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria=session.createCriteria(Cart.class);
 		Criteria userCriteria = criteria.createCriteria("user",JoinType.INNER_JOIN);

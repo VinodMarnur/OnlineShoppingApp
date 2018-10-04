@@ -11,11 +11,13 @@ import org.hibernate.SessionFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.candidjava.onlineshopping.model.Cart;
 import com.candidjava.onlineshopping.model.OrderedProducts;
 import com.candidjava.onlineshopping.model.Orders;
 
+@Service
 public class OrderDaoImpl implements OrderDao{
 	
 	JSONObject obj=null;
@@ -41,7 +43,7 @@ public class OrderDaoImpl implements OrderDao{
 		System.out.println("products====>"+obj.toString());
 		
 		
-		int userId=0;
+		long userId=0;
 		Orders order=new Orders();
 		
 		map=new HashMap();
@@ -51,7 +53,7 @@ public class OrderDaoImpl implements OrderDao{
 		List<OrderedProducts> listOrderProducts=new ArrayList<OrderedProducts>();
 		
 		if(!obj.isNull("userId")) {
-				order.setUser(onlineShoppingUserDao.getUserByUserId(obj.getInt("userId")));
+				order.setUser(onlineShoppingUserDao.getUserByUserId(obj.getLong("userId")));
 				userId=obj.getInt("userId");
 		}
 		
@@ -65,20 +67,21 @@ public class OrderDaoImpl implements OrderDao{
 		
 		List<Cart> cartProducts=productDao.getCartProducts(userId);
 		
+		// adding cart products to order products
 		
 		for(Cart cart:cartProducts) {
 			OrderedProducts orderProduct=new OrderedProducts();
-			orderProduct.setOrderedProductId(cart.getProduct().getProductId());
+			orderProduct.setProductId(cart.getProduct().getProductId());
 			orderProduct.setOrders(order);
-			listOrderProducts.add(orderProduct);
+			session.save(orderProduct);
 		
 		}
 		
-		// adding cart products to order products
-		session.save(listOrderProducts);
 		
 		// finally deleting cart products
-		session.delete(cartProducts);
+		for(Cart cart:cartProducts) {
+			session.delete(cart);
+		}
 		map.put("msg", "order placed Successfully");
 		
 		return map;
